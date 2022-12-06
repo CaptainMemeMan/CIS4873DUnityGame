@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    public float health = 50f; 
+    public float health = 50f;
+    public bool isTargetPractice;
+    public float defaulthealth; 
 
     public void TakeDamage(float amount)
     {
@@ -16,6 +18,15 @@ public class Target : MonoBehaviour
     }
     void Die()
     {
-        Destroy(gameObject); 
+        if (isTargetPractice)
+        {
+            health = defaulthealth;
+            gameObject.transform.position = new Vector3(Random.Range(-50f,50f), Random.Range(1f, 10f), Random.Range(-50f,50f));
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+      
     }
 }
