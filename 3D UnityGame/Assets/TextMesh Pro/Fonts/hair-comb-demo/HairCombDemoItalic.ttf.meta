@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 59e6d90c5a039d042aa44c0879d88816
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Hair Comb Demo
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 65625a440aae96e45bc46764d2e621fe, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
