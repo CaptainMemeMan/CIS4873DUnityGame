@@ -6,7 +6,9 @@ public class Target : MonoBehaviour
     public float health = 10f;
     public bool isTargetPractice;
     public float defaulthealth; 
-    public float speed; 
+    public float speed;
+    public float lives;
+    public bool isAlive = true; 
 
     public int targetsDestroyed = 0;
 
@@ -31,12 +33,14 @@ public class Target : MonoBehaviour
         }
 
     }
-    void Die()
+    public void Die()
     {
         if (isTargetPractice)
         {
             health = defaulthealth;
             gameObject.transform.position = new Vector3(Random.Range(-50f,50f), Random.Range(0f, 25f), Random.Range(-50f,50f));
+            KeepTrack(lives);
+            lives--;
         }
         else
         {
@@ -61,6 +65,20 @@ public class Target : MonoBehaviour
            gameObject.transform.position = new Vector3(Random.Range(-50f,50f), Random.Range(0f, 25f), Random.Range(-50f,50f));
            gameObject.transform.LookAt(gameObject.transform.position + new Vector3(Random.Range(-50f,50f),0,0));
         }
+    }
+    public bool KeepTrack(float lives)
+    {
+        
+        if (lives <= 0)
+        {
+            Destroy(gameObject);
+            return isAlive = false; 
+        } 
+        else
+        {
+            return isAlive = true; 
+        }
+
     }
 
 
