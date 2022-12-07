@@ -35,7 +35,8 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void Resume()
-    {   
+    {
+        Cursor.visible = false;
         pauseMenuUI.SetActive(false);
         CrossHair.SetActive(true);
         Time.timeScale = 1f;
@@ -46,7 +47,8 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
-
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         pauseMenuUI.SetActive(true);
         CrossHair.SetActive(false);
         Time.timeScale = 0f;
