@@ -6,7 +6,12 @@ public class Target : MonoBehaviour
     public float health = 50f;
     public bool isTargetPractice;
     public float defaulthealth; 
+    public float speed; 
 
+    void Update() 
+    {
+        moveTarget();
+    }
     public void TakeDamage(float amount)
     {
         health -= amount; 
@@ -28,5 +33,12 @@ public class Target : MonoBehaviour
             Destroy(gameObject);
         }
       
+    }
+
+    void moveTarget()
+    {
+        transform.Translate(Vector3.back * Time.deltaTime * speed);
+        transform.Translate(Vector3.up * Time.deltaTime, Space.World);
+
     }
 }
