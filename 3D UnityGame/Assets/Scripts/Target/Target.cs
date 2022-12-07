@@ -7,10 +7,12 @@ public class Target : MonoBehaviour
     public bool isTargetPractice;
     public float defaulthealth; 
     public float speed; 
+   
 
     void Update() 
     {
         moveTarget();
+        keepInBounds();
     }
     public void TakeDamage(float amount)
     {
@@ -26,7 +28,7 @@ public class Target : MonoBehaviour
         if (isTargetPractice)
         {
             health = defaulthealth;
-            gameObject.transform.position = new Vector3(Random.Range(-50f,50f), Random.Range(1f, 10f), Random.Range(-50f,50f));
+            gameObject.transform.position = new Vector3(Random.Range(-50f,50f), Random.Range(0f, 25f), Random.Range(-50f,50f));
         }
         else
         {
@@ -37,8 +39,20 @@ public class Target : MonoBehaviour
 
     void moveTarget()
     {
-        transform.Translate(Vector3.back * Time.deltaTime * speed);
+        
+        transform.Translate(Vector3.forward * Time.deltaTime * speed);
         transform.Translate(Vector3.up * Time.deltaTime, Space.World);
-
+        
+        
     }
+
+    void keepInBounds()
+    {
+        if(gameObject.transform.position.x > 55 || gameObject.transform.position.x < -55 || gameObject.transform.position.z < -55 || gameObject.transform.position.z > 55)
+        {
+           gameObject.transform.position = new Vector3(Random.Range(-50f,50f), Random.Range(0f, 25f), Random.Range(-50f,50f));
+           gameObject.transform.LookAt(gameObject.transform.position + new Vector3(Random.Range(-50f,50f),0,0));
+        }
+    }
+   
 }
