@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    public float health = 50f;
+    public float health = 10f;
     public bool isTargetPractice;
     public float defaulthealth; 
     public float speed; 
-   
+
+    public int targetsDestroyed = 0;
 
     void Update() 
     {
@@ -20,6 +21,13 @@ public class Target : MonoBehaviour
         if(health <= 0f)
         {
             Die();
+           // targetsDestroyed++;
+            //if(targetsDestroyed == 10) {
+             //   if(gameObject.tag == "Door") {
+              //      gameObject.transform.LookAt(gameObject.transform.position + new Vector3(0,70,0));
+              //  }
+                
+           // }
         }
 
     }
@@ -54,5 +62,7 @@ public class Target : MonoBehaviour
            gameObject.transform.LookAt(gameObject.transform.position + new Vector3(Random.Range(-50f,50f),0,0));
         }
     }
+
+
    
 }
