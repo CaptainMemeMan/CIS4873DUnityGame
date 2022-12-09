@@ -5,6 +5,7 @@ using System;
 
 public class PlayerMovement : MonoBehaviour
 {
+
     //Assingables
     public Transform playerCam;
     public Transform orientation;
