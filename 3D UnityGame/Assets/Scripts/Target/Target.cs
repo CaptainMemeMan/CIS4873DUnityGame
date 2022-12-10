@@ -12,6 +12,8 @@ public class Target : MonoBehaviour
 
     public int targetsDestroyed = 0;
 
+    
+
     void Update() 
     {
         moveTarget();
@@ -68,15 +70,18 @@ public class Target : MonoBehaviour
     }
     public bool KeepTrack(float lives)
     {
-        
-        if (lives <= 0)
-        {
-            Destroy(gameObject);
-            return isAlive = false; 
+        Debug.Log(lives);
+        Debug.Log("Much lvoe from Morjsioadjsioadsa");
+        if (lives <= 0){
+            isAlive = false;
+            this.gameObject.SetActive(false);
+            return isAlive; 
+           
         } 
         else
         {
-            return isAlive = true; 
+            isAlive = true;
+            return isAlive; 
         }
 
     }

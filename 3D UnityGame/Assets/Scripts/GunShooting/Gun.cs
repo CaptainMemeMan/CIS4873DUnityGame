@@ -29,11 +29,20 @@ public class Gun : MonoBehaviour
                 hit.rigidbody.AddForce(-hit.normal * impactForce);
             }
             Target target = hit.transform.GetComponent<Target>();
+            PlatformTarget target1 = hit.transform.GetComponent<PlatformTarget>();
+            NonMovingTarget target2 = hit.transform.GetComponent<NonMovingTarget>();
             if (target != null)
             {
-                target.TakeDamage(damage); 
-                
-            } 
+
+                target.TakeDamage(damage);
+
+            } else if (target1 != null)
+            {
+                target1.TakeDamage(damage);
+            } else if (target2 != null)
+            {
+                target2.TakeDamage(damage);
+            }
         } 
     }
 }
