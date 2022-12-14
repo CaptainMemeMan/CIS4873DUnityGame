@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject CrossHair;
     public GameObject player;
+    public GameObject HelpMenu;
 
 
 
@@ -65,5 +66,17 @@ public class PauseMenu : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void HelpPage()
+    {
+        HelpMenu.SetActive(true);
+        pauseMenuUI.SetActive(false);
+    }
+
+    public void BackHelp()
+    {
+        HelpMenu.SetActive(false);
+        pauseMenuUI.SetActive(true);
     }
 }

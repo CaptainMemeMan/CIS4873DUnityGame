@@ -24,6 +24,12 @@ public class Target : MonoBehaviour
         PosX = gameObject.transform.position.x;
         PosY = gameObject.transform.position.y;
         PosZ = gameObject.transform.position.z;
+
+        if (!DoNotMove)
+        {
+            gameObject.transform.position = new Vector3(Random.Range((PosX - 33), (PosX + 33)), Random.Range(PosY, (PosY + 27)), Random.Range((PosZ - 33), (PosZ + 33)));
+            gameObject.transform.LookAt(new Vector3(Random.Range((PosX - 33), (PosX + 33)), Random.Range(PosY, (PosY + 27)), Random.Range((PosZ - 33), (PosZ + 33))));
+        }
     }
 
     void Update()
@@ -35,9 +41,6 @@ public class Target : MonoBehaviour
 
             keepInBounds();
         }
-        Debug.Log(PosX);
-        Debug.Log(PosY);
-        Debug.Log(PosZ);
     }
     public void TakeDamage(float amount)
     {
@@ -57,10 +60,14 @@ public class Target : MonoBehaviour
     }
     public void Die()
     {
+
         if (isTargetPractice)
         {
-            health = defaulthealth;
-            gameObject.transform.position = new Vector3(Random.Range((PosX - 33), (PosX + 33)), Random.Range(PosY, (PosY + 27)), Random.Range((PosZ - 33), (PosZ + 33)));
+            if (!DoNotMove)
+            {
+                health = defaulthealth;
+                gameObject.transform.position = new Vector3(Random.Range((PosX - 33), (PosX + 33)), Random.Range(PosY, (PosY + 27)), Random.Range((PosZ - 33), (PosZ + 33)));
+            }
             KeepTrack(lives);
             lives--;
         }

@@ -13,12 +13,35 @@ public class PlatformTarget : MonoBehaviour
 
     public int targetsDestroyed = 0;
 
-    public PlatformScript platformScript;
+    public bool DoNotMove;
+
+    public PlatformScript platformcheck; 
+    private float PosX;
+    private float PosY;
+    private float PosZ;
+
+    void Start()
+    {
+        PosX = gameObject.transform.position.x;
+        PosY = gameObject.transform.position.y;
+        PosZ = gameObject.transform.position.z;
+
+        if (!DoNotMove)
+        {
+            gameObject.transform.position = new Vector3(Random.Range((PosX - 33), (PosX + 33)), Random.Range(PosY, (PosY + 27)), Random.Range((PosZ - 33), (PosZ + 33)));
+            gameObject.transform.LookAt(new Vector3(Random.Range((PosX - 33), (PosX + 33)), Random.Range(PosY, (PosY + 27)), Random.Range((PosZ - 33), (PosZ + 33))));
+        }
+    }
 
     void Update()
     {
-        moveTarget();
-        keepInBounds();
+
+        if (DoNotMove == false)
+        {
+            moveTarget();
+
+            keepInBounds();
+        }
     }
     public void TakeDamage(float amount)
     {
@@ -38,10 +61,14 @@ public class PlatformTarget : MonoBehaviour
     }
     public void Die()
     {
+
         if (isTargetPractice)
         {
-            health = defaulthealth;
-            gameObject.transform.position = new Vector3(Random.Range(-50f, 50f), Random.Range(0f, 25f), Random.Range(-50f, 50f));
+            if (!DoNotMove)
+            {
+                health = defaulthealth;
+                gameObject.transform.position = new Vector3(Random.Range((PosX - 33), (PosX + 33)), Random.Range(PosY, (PosY + 27)), Random.Range((PosZ - 33), (PosZ + 33)));
+            }
             KeepTrack(lives);
             lives--;
         }
@@ -63,10 +90,10 @@ public class PlatformTarget : MonoBehaviour
 
     void keepInBounds()
     {
-        if (gameObject.transform.position.x > 55 || gameObject.transform.position.x < -55 || gameObject.transform.position.z < -55 || gameObject.transform.position.z > 55)
+        if (gameObject.transform.position.x > (PosX + 38) || gameObject.transform.position.x < (PosX - 38) || gameObject.transform.position.z < (PosZ - 38) || gameObject.transform.position.z > (PosZ + 38) || gameObject.transform.position.y > (PosY + 27) || gameObject.transform.position.y < (PosY))
         {
-            gameObject.transform.position = new Vector3(Random.Range(-50f, 50f), Random.Range(0f, 25f), Random.Range(-50f, 50f));
-            gameObject.transform.LookAt(gameObject.transform.position + new Vector3(Random.Range(-50f, 50f), 0, 0));
+            gameObject.transform.position = new Vector3(Random.Range((PosX - 33), (PosX + 33)), Random.Range(PosY, (PosY + 27)), Random.Range((PosZ - 33), (PosZ + 33)));
+            gameObject.transform.LookAt(new Vector3(Random.Range((PosX - 33), (PosX + 33)), Random.Range(PosY, (PosY + 27)), Random.Range((PosZ - 33), (PosZ + 33))));
         }
     }
     public bool KeepTrack(float lives)
@@ -75,8 +102,7 @@ public class PlatformTarget : MonoBehaviour
         Debug.Log("Much lvoe from Morjsioadjsioadsa");
         if (lives <= 0)
         {
-            platformScript.OnTargetDied();
-
+            platformcheck.OnTargetDied(); 
             isAlive = false;
             this.gameObject.SetActive(false);
             return isAlive;
@@ -89,5 +115,4 @@ public class PlatformTarget : MonoBehaviour
         }
 
     }
-
 }
