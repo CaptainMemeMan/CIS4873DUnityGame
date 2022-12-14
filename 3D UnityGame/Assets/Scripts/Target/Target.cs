@@ -12,12 +12,16 @@ public class Target : MonoBehaviour
 
     public int targetsDestroyed = 0;
 
-    
+    public bool DoNotMove;
 
     void Update() 
     {
-        moveTarget();
-        keepInBounds();
+        if (DoNotMove == false)
+        {
+            moveTarget();
+
+            keepInBounds();
+        }
     }
     public void TakeDamage(float amount)
     {
